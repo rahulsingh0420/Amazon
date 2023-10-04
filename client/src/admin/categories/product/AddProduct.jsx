@@ -90,7 +90,6 @@ export default function AddProduct(){
        setSpecifications({
         ...specifications
        })
-       console.log(specifications)
     }
 
     const inputHandler = (e)=>{

@@ -1,6 +1,6 @@
 import axios from "axios";
 import Template from "../template/Template";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import fullfilledLogo from "../../images/fulfilledLogo.png"
 
@@ -15,6 +15,7 @@ function Product({product, setChecked, checked, carts, setFormQty, deleteCart}) 
     const user = JSON.parse(localStorage.getItem("user"))
 
     const cart = carts.filter(index=>  index.productId === product._id )
+    
 
     useEffect(()=>{
         const x = JSON.parse(product.specifications)
@@ -146,12 +147,17 @@ export default function Cart() {
     const user = JSON.parse(localStorage.getItem("user"))
     
     let initial = 0;
+
+    const Navigate = useNavigate()
     
     const cartPrice = useRef(0)
     
     const [carts, setCarts] = useState([])
 
     useEffect(()=>{
+        if (user === null) {
+            Navigate('/loginFirstPage')   
+           }else{
         axios.post("http://localhost:4000/getCartProductsArray",{_id:user?._id},{
             headers:{
                 "Content-Type" : "application/x-www-form-urlencoded"
@@ -167,6 +173,7 @@ export default function Cart() {
         } )
         .then(res => setCarts(res.data.carts))
         .catch(err => console.log(err))
+    }
     },[formQty])
 
     const [checked, setChecked] = useState([])
@@ -202,7 +209,6 @@ export default function Cart() {
                                     <Product key={product._id} deleteCart={deleteCart} cartProducts={cartProducts} product={product} setChecked={setChecked} checked={checked} carts={carts} setFormQty={setFormQty} />
                                 )
                             })}
-                            {console.log("lenght",checked.length)}
                         </div>
                     </div>
                     {/* left side ends here */}

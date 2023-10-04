@@ -4,14 +4,18 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import AdminTemplate from "../../template/AdminTemplate";
 
 
-function Specs({specs}){
+function Specs({specs, product_id}){
 
     const x =  JSON.parse(specs)
     const specKeys = Object.keys(x)
     
         return(
             <div className="specifications card w-100 h-100" style={{ overflow:"auto"}}>
-            <div className="p-1 mb-5 fw-bold" style={{ backgroundColor:"#c4bdbd75" }}><h1>Specifications</h1></div>
+            <div className="p-1 mb-5 fw-bold d-flex align-items-center justify-content-between" style={{ backgroundColor:"#c4bdbd75" }}>
+                <h1>Specifications</h1>
+                            <Link to={'/editProductSpecs'} state={product_id}><i className="me-2 fa-2xl p-1 mt-2 text-success fa-solid fa-pen-to-square"></i></Link>
+            </div>
+            
                 {
                 specKeys.map(k=>{
                     return(
@@ -198,7 +202,7 @@ export default function SubCategory(){
                     </div>
                     {/* product card */}
                     <div className="specificationComponent">
-                    <Specs specs={item?.specifications} />
+                    <Specs specs={item?.specifications} product_id={item._id} />
                     </div>
                     {/* product specifications */}
                 </div>

@@ -1,13 +1,21 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import Template from "../template/Template"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function Orders(){
 
     const [orders, setOrders] = useState([])  
+    const Navigate = useNavigate()
 
     useEffect(()=>{
+        const userData = localStorage.getItem("user")
+
+        if (userData === null) {
+            Navigate('/loginFirstPage')   
+           }else{
+
+
         axios.post("http://localhost:4000/getUserOrders", {userId: JSON.parse(localStorage.getItem('user'))._id},{
             headers:{
                 "Content-Type" : "application/x-www-form-urlencoded"
@@ -15,6 +23,7 @@ export default function Orders(){
         })
         .then(res=> setOrders(res.data.orders))
         .catch(err=> console.log(err))
+        }
     },[])
 
     return(

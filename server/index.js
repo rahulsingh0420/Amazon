@@ -1014,6 +1014,18 @@ app.post('/edituser', async(req,res)=>{
 
 })
 
+app.post('/changeSpecs', async(req,res)=>{
+    const client = await clientPromise
+    const db = client.db("amazon")
+    db.collection("products").updateOne({_id: new ObjectId(req.body._id)}, {
+        $set:{
+        specifications:req.body.x
+        }
+    })
+    res.json({status:true})
+
+})
+
 app.listen(PORT, () => {
     console.log(`server is running at port ${PORT}`)
 })

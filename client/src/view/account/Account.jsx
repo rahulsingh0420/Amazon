@@ -1,12 +1,12 @@
 import Template from "../template/Template";
 import Orders from "../../images/orders.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import security from "../../images/security.png"
 import prime from "../../images/Prime.png"
 import address from "../../images/address.png"
 import payment from "../../images/payment.png"
 import contact from "../../images/contact.png"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -36,7 +36,15 @@ function PageLinks({linkName, img, discription, link}) {
 }
 
 export default function Account (){
+    const Navigate = useNavigate()
 
+
+    const userData = localStorage.getItem("user")
+    useEffect(()=>{
+        if (userData === null) {
+         Navigate('/loginFirstPage')   
+        }
+    },[userData, Navigate])
     return(
         <Template>
             <>

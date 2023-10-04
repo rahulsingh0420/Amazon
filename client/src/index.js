@@ -20,6 +20,7 @@ import Err404 from './error/Err404';
 import SubCategory from './admin/categories/subcategories/SubCategory';
 import AddProduct from './admin/categories/product/AddProduct';
 import EditProduct from './admin/categories/product/EditProduct';
+import EditProductSpecs from './admin/categories/product/EditProductSpecs';
 import Address from './view/Address/Address';
 import Product from './view/products/Products';
 import Cart from './view/cart/Cart';
@@ -37,7 +38,6 @@ const { BrowserRouter, Routes, Route } = require("react-router-dom")
 
 root.render(
 
-<StrictMode>
 <BrowserRouter>
 <Routes>
   <Route path='/' element={<App/>} />
@@ -54,6 +54,7 @@ root.render(
   <Route path='categories/subCategory' element={<SubCategory/>} />
   <Route path='categories/subCategory/addproduct' element={<AddProduct/>}/>
   <Route path='categories/subCategory/editProduct' element={<EditProduct/>}/>
+  <Route path='/editProductSpecs' element={<EditProductSpecs/>}/>
   <Route path='allorders' element={<AllOrders/>}/>
 
   
@@ -71,11 +72,11 @@ root.render(
 
   
   
+  
 
   <Route path='*' element={<Err404/>}/>
 </Routes>
 </BrowserRouter>
-</StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

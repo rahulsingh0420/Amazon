@@ -230,7 +230,7 @@ export default function Product() {
                                     {/* order time */}
 
                                     <div className="my-3">
-                                        <i className="fa-solid fa-location-dot"></i> {JSON.parse(localStorage.getItem("address")).Name} {JSON.parse(localStorage.getItem("address")).Pincode} {JSON.parse(localStorage.getItem("address")).DeliveryStatus !== "Delivery" && <span className="text-danger">Not deliverable</span> }  
+                                        <i className="fa-solid fa-location-dot"></i> { localStorage?.getItem("address") !== null && JSON.parse(localStorage?.getItem("address")).Name} { localStorage?.getItem("address") !== null && JSON.parse(localStorage.getItem("address")).Pincode} { localStorage?.getItem("address") !== null && JSON.parse(localStorage.getItem("address")).DeliveryStatus !== "Delivery" && <span className="text-danger">Not deliverable</span> }  
                                     </div>
                                     {/* location */}
 
