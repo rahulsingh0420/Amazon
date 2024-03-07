@@ -1,5 +1,6 @@
 const {MongoClient} = require("mongodb")
-const uri="mongodb+srv://amazonUser:amazon2pass@cluster0.pyfkr32.mongodb.net/?retryWrites=true&w=majority"
+const uri=""
+// paste your mongo db uri here for database connection.Thankiyou !
 let client;
 let clientPromise;
 
